@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+
 
 
 const STORE = {
@@ -41,3 +40,5 @@ const STORE = {
       'm': { id: 'm', title: 'Thirteenth card', content: 'lorem ipsum' },
     },
   }
+//console.log(STORE)
+export default STORE;

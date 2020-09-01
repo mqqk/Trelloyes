@@ -1,23 +1,17 @@
-//used to pull the allCards data from the STORE
-//populates the data into the HTML within the List.js
+//create the template for the props to be eventually inputted
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './STORE.js';
+import './Card.css';
 
-console.log("running Cards.js")
-console.log(STORE.allCards);
-function Card(allCards){
+function Card(props){
+    
     return(
-        <div className="Card">
-            <button type="button">delete</button>
-            <h3>First card
-
-            </h3>
-            <p>
-
-            </p>
-
-        </div>
+       <div className="Card">
+           <button type="button">delete</button>
+           <h3>{props.title}</h3>
+           <p>{props.content}</p>
+       </div>
     )
 }
+
+export default Card;

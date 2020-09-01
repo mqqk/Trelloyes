@@ -216,3 +216,15 @@
 </body>
 
 </html>
+
+
+
+---------------------------------
+{STORE.lists.map(list =>
+          <List
+            key={list.id}
+            header={list.header}
+            cardIds={list.cardIds.map(Id => STORE.allCards[Id])} 
+          />
+          )}
+        

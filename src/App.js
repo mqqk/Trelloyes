@@ -1,10 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
+import List from './List.js';
+import STORE from './store';
 import './App.css';
 
 
 console.log("App is Running")
+// console.log(STORE);
+
 function App() {
+
+  // console.log(STORE.lists);
   return (
     <main className="App">
       <header className="App-header">
@@ -23,7 +29,13 @@ function App() {
         </a>
       </header>
       <div className="App-list">
-
+      {STORE.lists.map(list =>
+          <List
+            key={list.id}
+            header={list.header}
+            cardIds={list.cardIds.map(Id => STORE.allCards[Id])}//what is happening here 
+          />
+          )}
       </div>
     </main>
   );
