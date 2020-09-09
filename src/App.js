@@ -53,14 +53,36 @@ export default class App extends React.Component {
 
   }
 
+  omit(obj,keyToOmit){
+    let {[keyToOmit]:_, ...rest} =obj;
+    return rest;
+  }
+
   handleCardDelete = (cardId,listId) => {
     console.log('running card delete',{cardId},{listId});
-    const newCardId = this.state.map(itm =>{
-      if(itm.id===listId){this.state.filter(card => card.cardIds !==cardId)}})
 
-      this.setState({
-        lists:newCardId
-      })
+    console.log(this.state.lists[0].cardIds);
+    const keyToOmit = (this.state.lists.filter(itm => itm.id===listId)
+    )
+    console.log(keyToOmit);
+
+    const oldValue = this.state.lists[0].cardIds;
+    console.log(oldValue);//
+
+    const newKeyToOmit = keyToOmit[0].cardIds.filter(itm => itm!==cardId);
+
+    
+    console.log(newKeyToOmit);
+
+    this.setState({
+      
+      lists:{
+
+      'id':'1',
+      'header':'First list',
+      'cardIds':newKeyToOmit,
+
+    }})
  
   }
 
@@ -74,7 +96,7 @@ export default class App extends React.Component {
 
   render(){
 
-    // console.log(this.state.lists);
+    console.log(this.state.lists);
     return (
       <main className="App">        
           <h1>Trelloyes!</h1>        

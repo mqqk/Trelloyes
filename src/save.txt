@@ -1,0 +1,32 @@
+09/08/2020
+
+      const keyToOmit = itemFocus.filter((itm,i) =>{
+        console.log(itm.cardIds)
+        if(itm.cardIds[i]===cardId){return itm.cardIds[i]}
+      })
+      console.log(keyToOmit);
+
+----------------
+
+ const keyToOmit = (this.state.lists.filter(itm => itm.id===listId)
+    )
+    console.log(keyToOmit[0].cardIds);
+
+    const newKeyToOmit = keyToOmit[0].cardIds.filter(itm => itm!==cardId);
+
+    const newValue = this.state.lists.filter( itm => itm.id!==listId)
+
+    console.log(newValue);
+    console.log(newKeyToOmit);
+
+    this.setState(list[0]
+      {
+        lists:newValue
+        
+      }
+    )
+
+    ---
+        const newKey = this.state.lists.filter(itm => itm.id===listId).filter(itm => itm.cardIds!==cardId)
+
+    console.log(newKey);
