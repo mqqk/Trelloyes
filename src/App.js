@@ -58,37 +58,74 @@ export default class App extends React.Component {
     return rest;
   }
 
-  handleCardDelete = (cardId,listId) => {
-    console.log('running card delete',{cardId},{listId});
 
-    console.log(this.state.lists[0].cardIds);
-    const keyToOmit = (this.state.lists.filter(itm => itm.id===listId)
-    )
-    console.log(keyToOmit);
 
-    const oldValue = this.state.lists[0].cardIds;
-    console.log(oldValue);//
 
-    const newKeyToOmit = keyToOmit[0].cardIds.filter(itm => itm!==cardId);
+    handleRandomCard = (cardId) =>{
+      console.log('running random card')
+      console.log(cardId);
+      
 
-    
-    console.log(newKeyToOmit);
+      const newRandomCard = () => {
+        const id = Math.random().toString(36).substring(2, 4)
+          + Math.random().toString(36).substring(2, 4);
+        return {
+          id:id,
+          title: `Random Card ${id}`,
+          content: 'lorem ipsum',
+        }
+      }
+      console.log(newRandomCard);
+
+      const addCard = newRandomCard();
+      console.log(addCard);
+      // const newKey = addCard.id;
+      console.log(this);
+      const newLists = this.state.lists.map(list => {        
+        if(list.id===cardId){
+          return{
+            ...list,
+            cardIds:[...list.cardIds,addCard.id]
+          };
+        }
+        return list;
+      })
+      console.log(newLists);
+
+      this.setState({
+
+        lists:newLists,
+        allCards:{
+          ...this.state.allCards,
+          [addCard.id]:addCard,
+        }
+
+      })
+      console.log(this.state)
+
+    }
+
+
+  handleCardDelete = (cardId) => {
+    const newLists = this.state.lists.map(list =>({
+      ...list,
+      cardIds:list.cardIds.filter(id => id!==cardId)
+
+    }))
+
+    const newCards = this.omit(this.state.allCards,cardId);
+
+    console.log(newLists);
+    console.log(newCards);
 
     this.setState({
-      
-      lists:{
-
-      'id':'1',
-      'header':'First list',
-      'cardIds':newKeyToOmit,
-
-    }})
+      lists:newLists,
+      allCards:newCards}
+    )
  
   }
 
-  handleRandomCard(){
-    console.log('running random card')
-  }
+
 
 
 
@@ -96,7 +133,7 @@ export default class App extends React.Component {
 
   render(){
 
-    console.log(this.state.lists);
+    // console.log(this.state.lists);
     return (
       <main className="App">        
           <h1>Trelloyes!</h1>        

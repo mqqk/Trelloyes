@@ -9,12 +9,17 @@ export default class List extends React.Component{
     render(){
 
         // console.log(this.props.header);
-        //console.log(this.props);
+        console.log('hi',this.props.cardId);
         return(
             <section className="List">
                 <header className="List-header">
                     <h2>{this.props.header}</h2>
+                    <button 
+                        onClick={() => this.props.onRandom(this.props.cardId)}
+                        type="button" name="add">Add a Card
+                    </button>
                 </header>
+                
                 <div className="List-cards">
                     {this.props.cardIds.map(card =>
                         <Card
@@ -26,6 +31,7 @@ export default class List extends React.Component{
                             onDelete={this.props.onDelete}            
                         />
                     )}
+                    
                 </div>
             
             </section>
